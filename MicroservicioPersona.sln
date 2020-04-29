@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralService", "Service\GeneralService.csproj", "{E1684208-B14B-450D-B5AD-D3C2749415F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRestFull", "ApiRestFull\ApiRestFull.csproj", "{C0FCAB06-C1FC-43B1-8AD5-18A6366F460A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiRestFull", "ApiRestFull\ApiRestFull.csproj", "{C0FCAB06-C1FC-43B1-8AD5-18A6366F460A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
