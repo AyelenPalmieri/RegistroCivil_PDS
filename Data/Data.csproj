@@ -54,14 +54,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PersonaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonaModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TblEstadoCivil.cs">
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblGenero.cs">
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblLocalidad.cs">
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblPersona.cs">
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblProvincia.cs">
+      <DependentUpon>PersonaModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="PersonaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PersonaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PersonaModel.edmx.diagram">
+      <DependentUpon>PersonaModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PersonaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PersonaModel.edmx</DependentUpon>
+      <LastGenOutput>PersonaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PersonaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PersonaModel.edmx</DependentUpon>
+      <LastGenOutput>PersonaModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

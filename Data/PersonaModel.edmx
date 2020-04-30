@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PersonasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblEstadoCivil">
+          <Key>
+            <PropertyRef Name="PkEstadoCivil" />
+          </Key>
+          <Property Name="PkEstadoCivil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoEstadoCivil" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblGenero">
+          <Key>
+            <PropertyRef Name="PkGenero" />
+          </Key>
+          <Property Name="PkGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoGenero" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblLocalidad">
+          <Key>
+            <PropertyRef Name="PkLocalidad" />
+          </Key>
+          <Property Name="PkLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreLocalidad" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblPersona">
+          <Key>
+            <PropertyRef Name="PKPersona" />
+          </Key>
+          <Property Name="PKPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="FkLocalidad_TblLocalidad" Type="int" Nullable="false" />
+          <Property Name="FkGenero_TblGenero" Type="int" Nullable="false" />
+          <Property Name="FkEstadoCivil_TblEstadoCivil" Type="int" Nullable="false" />
+          <Property Name="FkProvincia_TblProvincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblProvincia">
+          <Key>
+            <PropertyRef Name="PkProvincia" />
+          </Key>
+          <Property Name="PkProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProvincia" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FkEstadoCivil_TblEstadoCivil">
+          <End Role="TblEstadoCivil" Type="Self.TblEstadoCivil" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEstadoCivil">
+              <PropertyRef Name="PkEstadoCivil" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkEstadoCivil_TblEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkGenero_TblGenero">
+          <End Role="TblGenero" Type="Self.TblGenero" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenero">
+              <PropertyRef Name="PkGenero" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkGenero_TblGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkLocalidad_TblLocalidad">
+          <End Role="TblLocalidad" Type="Self.TblLocalidad" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblLocalidad">
+              <PropertyRef Name="PkLocalidad" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkLocalidad_TblLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkProvincia_TblProvincia">
+          <End Role="TblProvincia" Type="Self.TblProvincia" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProvincia">
+              <PropertyRef Name="PkProvincia" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkProvincia_TblProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonasModelStoreContainer">
+          <EntitySet Name="TblEstadoCivil" EntityType="Self.TblEstadoCivil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGenero" EntityType="Self.TblGenero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblLocalidad" EntityType="Self.TblLocalidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblPersona" EntityType="Self.TblPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblProvincia" EntityType="Self.TblProvincia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FkEstadoCivil_TblEstadoCivil" Association="Self.FkEstadoCivil_TblEstadoCivil">
+            <End Role="TblEstadoCivil" EntitySet="TblEstadoCivil" />
+            <End Role="TblPersona" EntitySet="TblPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FkGenero_TblGenero" Association="Self.FkGenero_TblGenero">
+            <End Role="TblGenero" EntitySet="TblGenero" />
+            <End Role="TblPersona" EntitySet="TblPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FkLocalidad_TblLocalidad" Association="Self.FkLocalidad_TblLocalidad">
+            <End Role="TblLocalidad" EntitySet="TblLocalidad" />
+            <End Role="TblPersona" EntitySet="TblPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FkProvincia_TblProvincia" Association="Self.FkProvincia_TblProvincia">
+            <End Role="TblProvincia" EntitySet="TblProvincia" />
+            <End Role="TblPersona" EntitySet="TblPersona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PersonasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblEstadoCivil">
+          <Key>
+            <PropertyRef Name="PkEstadoCivil" />
+          </Key>
+          <Property Name="PkEstadoCivil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEstadoCivil" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TblPersonas" Relationship="Self.FkEstadoCivil_TblEstadoCivil" FromRole="TblEstadoCivil" ToRole="TblPersona" />
+        </EntityType>
+        <EntityType Name="TblGenero">
+          <Key>
+            <PropertyRef Name="PkGenero" />
+          </Key>
+          <Property Name="PkGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoGenero" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TblPersonas" Relationship="Self.FkGenero_TblGenero" FromRole="TblGenero" ToRole="TblPersona" />
+        </EntityType>
+        <EntityType Name="TblLocalidad">
+          <Key>
+            <PropertyRef Name="PkLocalidad" />
+          </Key>
+          <Property Name="PkLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreLocalidad" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TblPersonas" Relationship="Self.FkLocalidad_TblLocalidad" FromRole="TblLocalidad" ToRole="TblPersona" />
+        </EntityType>
+        <EntityType Name="TblPersona">
+          <Key>
+            <PropertyRef Name="PKPersona" />
+          </Key>
+          <Property Name="PKPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FkLocalidad_TblLocalidad" Type="Int32" Nullable="false" />
+          <Property Name="FkGenero_TblGenero" Type="Int32" Nullable="false" />
+          <Property Name="FkEstadoCivil_TblEstadoCivil" Type="Int32" Nullable="false" />
+          <Property Name="FkProvincia_TblProvincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblEstadoCivil" Relationship="Self.FkEstadoCivil_TblEstadoCivil" FromRole="TblPersona" ToRole="TblEstadoCivil" />
+          <NavigationProperty Name="TblGenero" Relationship="Self.FkGenero_TblGenero" FromRole="TblPersona" ToRole="TblGenero" />
+          <NavigationProperty Name="TblLocalidad" Relationship="Self.FkLocalidad_TblLocalidad" FromRole="TblPersona" ToRole="TblLocalidad" />
+          <NavigationProperty Name="TblProvincia" Relationship="Self.FkProvincia_TblProvincia" FromRole="TblPersona" ToRole="TblProvincia" />
+        </EntityType>
+        <EntityType Name="TblProvincia">
+          <Key>
+            <PropertyRef Name="PkProvincia" />
+          </Key>
+          <Property Name="PkProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProvincia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TblPersonas" Relationship="Self.FkProvincia_TblProvincia" FromRole="TblProvincia" ToRole="TblPersona" />
+        </EntityType>
+        <Association Name="FkEstadoCivil_TblEstadoCivil">
+          <End Role="TblEstadoCivil" Type="Self.TblEstadoCivil" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEstadoCivil">
+              <PropertyRef Name="PkEstadoCivil" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkEstadoCivil_TblEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkGenero_TblGenero">
+          <End Role="TblGenero" Type="Self.TblGenero" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGenero">
+              <PropertyRef Name="PkGenero" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkGenero_TblGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkLocalidad_TblLocalidad">
+          <End Role="TblLocalidad" Type="Self.TblLocalidad" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblLocalidad">
+              <PropertyRef Name="PkLocalidad" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkLocalidad_TblLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkProvincia_TblProvincia">
+          <End Role="TblProvincia" Type="Self.TblProvincia" Multiplicity="1" />
+          <End Role="TblPersona" Type="Self.TblPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProvincia">
+              <PropertyRef Name="PkProvincia" />
+            </Principal>
+            <Dependent Role="TblPersona">
+              <PropertyRef Name="FkProvincia_TblProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblEstadoCivils" EntityType="Self.TblEstadoCivil" />
+          <EntitySet Name="TblGeneroes" EntityType="Self.TblGenero" />
+          <EntitySet Name="TblLocalidads" EntityType="Self.TblLocalidad" />
+          <EntitySet Name="TblPersonas" EntityType="Self.TblPersona" />
+          <EntitySet Name="TblProvincias" EntityType="Self.TblProvincia" />
+          <AssociationSet Name="FkEstadoCivil_TblEstadoCivil" Association="Self.FkEstadoCivil_TblEstadoCivil">
+            <End Role="TblEstadoCivil" EntitySet="TblEstadoCivils" />
+            <End Role="TblPersona" EntitySet="TblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FkGenero_TblGenero" Association="Self.FkGenero_TblGenero">
+            <End Role="TblGenero" EntitySet="TblGeneroes" />
+            <End Role="TblPersona" EntitySet="TblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FkLocalidad_TblLocalidad" Association="Self.FkLocalidad_TblLocalidad">
+            <End Role="TblLocalidad" EntitySet="TblLocalidads" />
+            <End Role="TblPersona" EntitySet="TblPersonas" />
+          </AssociationSet>
+          <AssociationSet Name="FkProvincia_TblProvincia" Association="Self.FkProvincia_TblProvincia">
+            <End Role="TblProvincia" EntitySet="TblProvincias" />
+            <End Role="TblPersona" EntitySet="TblPersonas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersonasModelStoreContainer" CdmEntityContainer="PersonasEntities">
+          <EntitySetMapping Name="TblEstadoCivils">
+            <EntityTypeMapping TypeName="PersonasModel.TblEstadoCivil">
+              <MappingFragment StoreEntitySet="TblEstadoCivil">
+                <ScalarProperty Name="PkEstadoCivil" ColumnName="PkEstadoCivil" />
+                <ScalarProperty Name="TipoEstadoCivil" ColumnName="TipoEstadoCivil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGeneroes">
+            <EntityTypeMapping TypeName="PersonasModel.TblGenero">
+              <MappingFragment StoreEntitySet="TblGenero">
+                <ScalarProperty Name="PkGenero" ColumnName="PkGenero" />
+                <ScalarProperty Name="TipoGenero" ColumnName="TipoGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblLocalidads">
+            <EntityTypeMapping TypeName="PersonasModel.TblLocalidad">
+              <MappingFragment StoreEntitySet="TblLocalidad">
+                <ScalarProperty Name="PkLocalidad" ColumnName="PkLocalidad" />
+                <ScalarProperty Name="NombreLocalidad" ColumnName="NombreLocalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblPersonas">
+            <EntityTypeMapping TypeName="PersonasModel.TblPersona">
+              <MappingFragment StoreEntitySet="TblPersona">
+                <ScalarProperty Name="PKPersona" ColumnName="PKPersona" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FkLocalidad_TblLocalidad" ColumnName="FkLocalidad_TblLocalidad" />
+                <ScalarProperty Name="FkGenero_TblGenero" ColumnName="FkGenero_TblGenero" />
+                <ScalarProperty Name="FkEstadoCivil_TblEstadoCivil" ColumnName="FkEstadoCivil_TblEstadoCivil" />
+                <ScalarProperty Name="FkProvincia_TblProvincia" ColumnName="FkProvincia_TblProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblProvincias">
+            <EntityTypeMapping TypeName="PersonasModel.TblProvincia">
+              <MappingFragment StoreEntitySet="TblProvincia">
+                <ScalarProperty Name="PkProvincia" ColumnName="PkProvincia" />
+                <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
