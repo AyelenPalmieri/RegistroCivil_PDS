@@ -21,7 +21,7 @@ namespace Service
 
         public void DeletePersona(int? DNI)
         {
-            TblPersona persona = _context.TblPersonas.FirstOrDefault(e => e.DNI == DNI);
+            TblPersona persona = _context.TblPersonas.FirstOrDefault(e => e.DNI == DNI.ToString());
 
         }
 
